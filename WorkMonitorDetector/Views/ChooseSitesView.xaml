@@ -1,0 +1,16 @@
+﻿<Window x:Class="WorkMonitorDetector.Views.ChooseSitesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorkMonitorDetector.Views"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Title="Work Monitor Detector" Height="522" Width="1068">
+    <Grid>
+        <Button Content="OK" Command="{Binding OK}" HorizontalAlignment="Left" Margin="554,462,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0.437,2.866"/>
+        <WebBrowser Margin="10,10,10,122" x:Name="Browser" >
+        </WebBrowser>
+
+    </Grid>
+</Window>
