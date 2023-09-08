@@ -5,16 +5,18 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CefSharp.Wpf.NETCore" Version="116.0.130" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="MVVMUtilities">
-      <HintPath>..\..\WorkMonitorUtilites\WorkMonitorUtilites\bin\Debug\net6.0-windows\MVVMUtilities.dll</HintPath>
+      <HintPath>..\..\MVVMUtilities\MVVMUtilities\bin\Debug\net6.0-windows\MVVMUtilities.dll</HintPath>
     </Reference>
   </ItemGroup>
 

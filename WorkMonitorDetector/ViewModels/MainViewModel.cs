@@ -2,6 +2,7 @@
 using MVVMUtilities.Core;
 using System;
 using System.Linq;
+using WorkMonitorDetector.Models;
 
 namespace WorkMonitorDetector.ViewModels
 {

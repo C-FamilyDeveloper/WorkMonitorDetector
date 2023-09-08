@@ -4,7 +4,6 @@ using MVVMUtilities.Services;
 using System.Diagnostics;
 using System;
 using System.Windows;
-using WorkMonitorDetector.Models;
 using WorkMonitorDetector.ViewModels;
 using WorkMonitorDetector.Views;
 
@@ -43,15 +42,14 @@ namespace WorkMonitorDetector
             services.AddSingleton<INavigationService, NavigationService>(serviceProvider =>
             {
                 var navigationService = new NavigationService(serviceProvider);
-                //navigationService.Initialize(serviceProvider);
                 navigationService.ConfigureWindow<MainViewModel, MainView>();
                 navigationService.ConfigureWindow<ChooseSitesViewModel, ChooseSitesView>();
                 navigationService.ConfigureWindow<ChooseApplicationsViewModel, ChooseApplicationsView>();
                 return navigationService;
             });
-            services.AddScoped<MainViewModel>();
-            services.AddScoped<ChooseSitesViewModel>();
-            services.AddScoped<ChooseApplicationsViewModel>();
+            //services.AddScoped<MainViewModel>();
+            //services.AddScoped<ChooseSitesViewModel>();
+            //services.AddScoped<ChooseApplicationsViewModel>();
         }
 
         private void OnStartup(object sender, StartupEventArgs e)

@@ -5,12 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkMonitorDetector.Views"
         xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:cs= "clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf" 
+        xmlns:handlers ="clr-namespace:WorkMonitorDetector.Views.CefSharp.Handlers"
         mc:Ignorable="d"
-        Title="Work Monitor Detector" Height="522" Width="1068">
+        Title="Work Monitor Detector" Height="613" Width="1500">
+    <Window.Resources>
+        <handlers:BrowserLifeSpanHandler x:Key="Handler"/>
+    </Window.Resources>
     <Grid>
-        <Button Content="OK" Command="{Binding OK}" HorizontalAlignment="Left" Margin="554,462,0,0" VerticalAlignment="Top" Width="101" RenderTransformOrigin="0.437,2.866"/>
-        <WebBrowser Margin="10,10,10,122" x:Name="Browser" >
-        </WebBrowser>
-
+        <cs:ChromiumWebBrowser Address="{Binding URL, Mode=TwoWay}" Margin="30,10,532,95" LifeSpanHandler="{StaticResource Handler}">
+        </cs:ChromiumWebBrowser>
+        <ListBox ItemsSource="{Binding Sites}" Margin="989,43,25,282">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ListBoxItem>
+                        <CheckBox x:Name="SiteCheckBox" IsChecked="{Binding IsChecked}" Content="{Binding ItemValue}">
+                            <behaviors:Interaction.Triggers>
+                                <behaviors:EventTrigger EventName="Checked" SourceObject="{Binding ElementName=SiteCheckBox}">
+                                    <behaviors:InvokeCommandAction 
+                                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}},
+                                        Path=DataContext.SiteCheckedChanged}" />    
+                                </behaviors:EventTrigger>
+                                <behaviors:EventTrigger EventName="Unchecked" SourceObject="{Binding ElementName=SiteCheckBox}">
+                                    <behaviors:InvokeCommandAction 
+                                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}},
+                                        Path=DataContext.SiteCheckedChanged}" />
+                                </behaviors:EventTrigger>
+                            </behaviors:Interaction.Triggers>
+                        </CheckBox>
+                    </ListBoxItem>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+         <Button Content="Добавить сайт" Command="{Binding AddSite}" HorizontalAlignment="Left" Margin="1047,397,0,0"
+            VerticalAlignment="Top" Height="30" Width="150"/>
+        <Button Content="Удалить выбранные" IsEnabled="{Binding IsEnabledDeleting}" Command="{Binding RemoveSelectedSites, Mode=TwoWay}"
+            HorizontalAlignment="Left" Margin="1271,397,0,0" VerticalAlignment="Top" Height="30" Width="150" RenderTransformOrigin="0.493,2.884"/>
+        <Button Content="Сохранить" Command="{Binding Save}" HorizontalAlignment="Left" Margin="1204,485,0,0" VerticalAlignment="Top"
+            Height="33" Width="80" RenderTransformOrigin="-0.238,-4.878"/>
     </Grid>
 </Window>

@@ -4,10 +4,6 @@ using System.Linq;
 using WorkMonitorDetector.Models;
 using MVVMUtilities.Abstractions;
 using MVVMUtilities.Core;
-using MVVMUtilities.Services;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-
 
 namespace WorkMonitorDetector.ViewModels
 {
@@ -51,11 +47,11 @@ namespace WorkMonitorDetector.ViewModels
             });
             RemoveSelectedPrograms = new(() =>
             {
-                for (int j = 0; j < Applications.Count; j++) 
+                for (int i = 0; i < Applications.Count; i++) 
                 {
-                    if (Applications[j].IsChecked) 
+                    if (Applications[i].IsChecked) 
                     {
-                        Applications.RemoveAt(j);
+                        Applications.RemoveAt(i);
                     }
                 }
                 OnPropertyChanged(nameof(IsEnabledDeleting));
