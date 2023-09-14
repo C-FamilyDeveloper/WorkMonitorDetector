@@ -4,6 +4,7 @@ using System.Linq;
 using WorkMonitorDetector.Models;
 using MVVMUtilities.Abstractions;
 using MVVMUtilities.Core;
+using System.Windows;
 
 namespace WorkMonitorDetector.ViewModels
 {

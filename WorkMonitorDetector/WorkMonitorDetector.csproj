@@ -18,6 +18,9 @@
     <Reference Include="MVVMUtilities">
       <HintPath>..\..\MVVMUtilities\MVVMUtilities\bin\Debug\net6.0-windows\MVVMUtilities.dll</HintPath>
     </Reference>
+    <Reference Include="WorkMonitorTypes">
+      <HintPath>..\..\WorkMonitorTypes\WorkMonitorTypes\bin\Debug\net6.0\WorkMonitorTypes.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
