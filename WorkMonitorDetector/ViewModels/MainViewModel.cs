@@ -1,15 +1,10 @@
 ﻿using MVVMUtilities.Abstractions;
 using MVVMUtilities.Core;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Documents;
-using WorkMonitorDetector.Models;
 using WorkMonitorDetector.Models.Services;
 using WorkMonitorTypes.Requests;
-using WorkMonitorTypes.Responses;
 
 namespace WorkMonitorDetector.ViewModels
 {
@@ -73,6 +68,5 @@ namespace WorkMonitorDetector.ViewModels
             });
 
         }
- 
     }
 }
