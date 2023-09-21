@@ -6,6 +6,7 @@ using System;
 using System.Windows;
 using WorkMonitorDetector.ViewModels;
 using WorkMonitorDetector.Views;
+using WorkMonitorDetector.Models.Services;
 
 namespace WorkMonitorDetector
 {
@@ -47,6 +48,7 @@ namespace WorkMonitorDetector
                 navigationService.ConfigureWindow<ChooseApplicationsViewModel, ChooseApplicationsView>();
                 return navigationService;
             });
+            services.AddSingleton<HttpService>();
             //services.AddScoped<MainViewModel>();
             //services.AddScoped<ChooseSitesViewModel>();
             //services.AddScoped<ChooseApplicationsViewModel>();

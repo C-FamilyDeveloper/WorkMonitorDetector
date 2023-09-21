@@ -12,6 +12,8 @@ namespace WorkMonitorDetector.ViewModels
     {
         private readonly INavigationService navigationService;
         private readonly IDialogService dialogService;
+        private readonly HttpService httpService;
+
         private ObservableCollection<string> clients;
         public ObservableCollection<string> Clients 
         {
@@ -34,19 +36,19 @@ namespace WorkMonitorDetector.ViewModels
         public RelayCommand SetApplications { get; set; }
         public RelayCommand UserChanged { get; set; }
 
-        private SendingService sendingService = new SendingService();
-        public MainViewModel(INavigationService navigationService, IDialogService dialogService)
+        public MainViewModel(INavigationService navigationService, IDialogService dialogService, HttpService httpService)
         {
-            Task.Run(async ()=> Clients = new (await new GettingService().GetClientNamesAsync()));
+            Task.Run(async ()=> Clients = new (await httpService.GetClientNamesAsync()));
             this.navigationService = navigationService;
             this.dialogService = dialogService;
+            this.httpService = httpService;
             SetApplications = new(async () =>
             {
                 navigationService.ShowDialog<ChooseApplicationsViewModel>();
                 var applications = navigationService.GetDataContext<ChooseApplicationsViewModel>().Applications;
                 foreach (var app in applications)
                 {
-                    await sendingService.SendAsync(new AcceptedApp { AppName = app.ItemValue, UserName = client! });
+                    await httpService.SendAsync(new AcceptedApp { AppName = app.ItemValue, UserName = client! });
                 }
             });
             SetSites = new(async ()=>
@@ -55,7 +57,7 @@ namespace WorkMonitorDetector.ViewModels
                 var sites = navigationService.GetDataContext<ChooseSitesViewModel>().Sites;
                 foreach(var site in sites)
                 {
-                    await sendingService.SendAsync(new AcceptedSite { SiteURL = site.ItemValue, UserName = client! });
+                    await httpService.SendAsync(new AcceptedSite { SiteURL = site.ItemValue, UserName = client! });
                 }
             });
             UserChanged = new(() =>

@@ -4,7 +4,9 @@ using System.Linq;
 using WorkMonitorDetector.Models;
 using MVVMUtilities.Abstractions;
 using MVVMUtilities.Core;
-using System.Windows;
+using System.Threading.Tasks;
+using System.Windows.Threading;
+using MVVMUtilities.Attributes;
 
 namespace WorkMonitorDetector.ViewModels
 {
